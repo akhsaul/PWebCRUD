@@ -3,8 +3,8 @@ function echoToConsole($data)
 {
     $output = "Debug Objects: ";
     if (is_array($data)) {
-        if (is_array($data[0])){
-            foreach ($data as $d){
+        if (is_array($data[0])) {
+            foreach ($data as $d) {
                 $output .= implode(',', $d) . ',';
             }
         } else {

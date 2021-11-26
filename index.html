@@ -12,6 +12,7 @@
         body {
             text-align: unset !important;
         }
+
         .gradient {
             background: linear-gradient(120deg, #7f70f5, #0ea0ff);
         }
@@ -35,10 +36,11 @@
                             </div>
                             <div class="mb-3 position-relative form-outline">
                                 <label for="password">Password</label>
-                                <input type="password" id="password" name="password" class="form-control form-control-user"
-                                       placeholder="Password" minlength="8" required>
+                                <input type="password" id="password" name="password"
+                                       class="form-control form-control-user" placeholder="Password" minlength="8"
+                                       required>
                                 <div class="invalid-tooltip">
-                                    Kata Sandi minimal 8 huruf
+                                    Kata Sandi minimal 8 huruf dan harus "[a-zA-Z0-9]"
                                 </div>
                             </div>
                             <div class="mb-3 position-relative form-outline">

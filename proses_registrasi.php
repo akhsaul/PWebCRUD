@@ -29,20 +29,20 @@ if ($result) {
         $sql = "INSERT INTO $tbname (id, username, password, email)VALUES(NULL,'$username','$password','$email')";
         $result = $connection->query($sql);
         if ($result) {
-            $connection -> close();
+            $connection->close();
             echoToConsole("Insert Data Success");
             move("view_data.php");
         } else {
-            $connection -> close();
-            move("error.php?loc=index.html&title=Insert Error&msg=Insert Data Failed. Data = $username, $password, $email");
+            $connection->close();
+            move("error.php?loc=index.html&title=Insert Error&msg=Insert Data Failed.<br>Data : $username, $password, $email");
         }
     } else {
-        $connection -> close();
+        $connection->close();
         echoToConsole("TABLE CAN'T BE CREATED");
         move("error.php?loc=index.html&title=Table Error&msg=TABLE CAN'T BE CREATED");
     }
 } else {
-    $connection -> close();
+    $connection->close();
     echoToConsole("DATABASE CAN'T BE CREATED");
-    move("error.php?loc=index.html&title=Databse Error&msg=DATABASE CAN'T BE CREATED");
+    move("error.php?loc=index.html&title=Database Error&msg=DATABASE CAN'T BE CREATED");
 }

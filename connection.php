@@ -14,9 +14,9 @@ function connect($host = "127.0.0.1", $username = "root", $password = null, $db 
         $msgFailed = "Connection With DB Failed";
     }
 
-    if ($connection -> connect_error) {
-        $msg = $connection -> connect_error;
-        $connection -> close();
+    if ($connection->connect_error) {
+        $msg = $connection->connect_error;
+        $connection->close();
         move("error.php?loc=index.html&title=$msgFailed&msg=$msg");
     }
 
