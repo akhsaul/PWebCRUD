@@ -1,7 +1,7 @@
-(function () {
+(() => {
     "use strict"; // Start of use strict
 
-    function isMatch(str, pattern, flags){
+    function isMatch(str, pattern, flags) {
         const regex = new RegExp(pattern, flags)
         let m
         let result = false
@@ -78,7 +78,7 @@
                 }
                 form.classList.add('was-validated');
 
-                const input = document.querySelectorAll('input')
+                const input = document.querySelectorAll('.form-control')
                 const tooltips = document.querySelectorAll('.invalid-tooltip')
                 for (let i = 0; i < input.length; i++) {
                     const e = input[i]
@@ -87,15 +87,13 @@
 
                     // only run if all input element got blurred
                     e.addEventListener('blur', () => {
-                            checkNotEmpty(e, event, false, tooltips[i])
-                        }
-                    )
+                        checkNotEmpty(e, event, false, tooltips[i])
+                    })
 
                     // only run if all input element got focussed
                     e.addEventListener('focus', () => {
-                            checkNotEmpty(e, event, true, tooltips[i])
-                        }
-                    )
+                        checkNotEmpty(e, event, true, tooltips[i])
+                    })
 
                     // only run if user doing input in all input element
                     e.addEventListener('input', () => {
