@@ -58,6 +58,12 @@
                                                         value="<?= $id ?>">Ubah
                                                 </button>
                                             </td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary actDelete"
+                                                        data-bs-toggle="modal" data-bs-target="#hapus"
+                                                        value="<?= $id ?>">Hapus
+                                                </button>
+                                            </td>
                                         </tr>
                                         <?php
                                     }
@@ -82,6 +88,28 @@
         </div>
     </div>
 </div>
+<!-- Start Of Modal Delete -->
+<div class="modal fade del" id="hapus" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabelDelete">Konfirmasi Hapus Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4 style="text-align: center;">Apakah anda yakin ingin menghapus username
+                    <strong id="usernameModal"></strong>?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                <a class="btn btn-primary" href="proses_data.php?do=delete&id=<?= $id ?>" role="button">Hapus</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Of Modal Delete -->
+<!-- Start Of Modal Update -->
 <div class="modal fade del" id="ubah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel">
     <div class="modal-dialog">
@@ -133,10 +161,22 @@
         </div>
     </div>
 </div>
+<!-- End Of Modal Update -->
 <script>
     (() => {
         "use strict"; // Start of use strict
         $(document).ready(() => {
+            document.querySelectorAll(".actDelete").forEach((e) => {
+                e.addEventListener('click', () => {
+                    $.post("proses_data.php", {
+                        do: "get",
+                        id: e.value,
+                        key: "username"
+                    }, (data) => {
+                        document.getElementById("usernameModal").innerText = data;
+                    });
+                })
+            })
             document.querySelectorAll(".actUpdate").forEach((e) => {
                 e.addEventListener('click', () => {
                     $.post("proses_data.php", {
