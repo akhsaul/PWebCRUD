@@ -34,6 +34,17 @@ if ($todo === "get") {
             $connection->close();
             error("view_data.php", "Failed Update Data", $msg);
         }
+    } else if ($todo === "delete") {
+        $sql = "delete from $tbname where id = $id";
+        $result = $connection->query($sql);
+        if ($result) {
+            echoToConsole("Success Delete Data");
+            move("view_data.php");
+        } else {
+            $msg = $connection->connect_error .= "id = $id, do = $todo";
+            $connection->close();
+            error("view_data.php", "Failed Delete Data", $msg);
+        }
     } else {
         $connection->close();
         error("view_data.php", "Unknown Request", "Wrong Request From view data page", "id = $id, do = $todo");
