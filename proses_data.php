@@ -24,7 +24,7 @@ if ($todo === "get") {
         $username = $_POST['username'];
         $password = $_POST['password'];
         $email = $_POST['email'];
-        $sql = "update";
+        $sql = "update $tbname set username='$username', password='$password', email='$email' where id = $id";
         $result = $connection->query($sql);
         if ($result) {
             echoToConsole("Success Update Data");
