@@ -1,7 +1,7 @@
 <?php
 require_once 'connection.php';
-$id = $_POST['id'];
-$todo = $_POST['do'];
+$id = $_GET['id'];
+$todo = $_GET['do'];
 if ($todo === "get") {
     $what = $_POST['key'];
     $connection = connect(db: $dbname, debug: false);

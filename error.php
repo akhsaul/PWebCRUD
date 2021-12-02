@@ -1,7 +1,9 @@
 <?php
+require_once 'func_helper.php';
 $location = $_GET['loc'];
 $message = $_GET['msg'];
 $title = $_GET['title'];
+$msgToConsole = $_GET['toConsole'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,11 +60,12 @@ $title = $_GET['title'];
     window.onload = () => {
         document.getElementById('click').click()
     }
-    <?php
-    echo "document.getElementById('close').addEventListener('click', () => {
-            document.location = '$location'; 
-        })"
-    ?>
+    document.getElementById('close').addEventListener('click', () => {
+        document.location = <?= $location ?>
+    });
 </script>
+<?php
+echoToConsole($msgToConsole);
+?>
 </body>
 </html>

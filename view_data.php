@@ -55,16 +55,35 @@
                                             <td>
                                                 <button type="button" class="btn btn-primary actUpdate"
                                                         data-bs-toggle="modal" data-bs-target="#ubah"
-                                                        value="<?= $id ?>">Ubah
-                                                </button>
+                                                        value="<?= $id ?>">Ubah</button>
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-primary actDelete"
-                                                        data-bs-toggle="modal" data-bs-target="#hapus"
-                                                        value="<?= $id ?>">Hapus
-                                                </button>
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#hapus_<?= $id ?>">Hapus</button>
                                             </td>
                                         </tr>
+                                        <!-- Start Of Modal Delete -->
+                                        <div class="modal fade del" id="hapus_<?= $id ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                             aria-labelledby="staticBackdropLabel">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabelDelete">Konfirmasi Hapus Data</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h4 style="text-align: center;">Apakah anda yakin ingin menghapus username
+                                                            <strong id="usernameModal"><?= $username ?></strong>?</h4>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                                        <a class="btn btn-primary" href="proses_data.php?do=delete&id=<?= $id ?>" role="button">Hapus</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Of Modal Delete -->
                                         <?php
                                     }
                                 } else {
@@ -88,27 +107,6 @@
         </div>
     </div>
 </div>
-<!-- Start Of Modal Delete -->
-<div class="modal fade del" id="hapus" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabelDelete">Konfirmasi Hapus Data</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h4 style="text-align: center;">Apakah anda yakin ingin menghapus username
-                    <strong id="usernameModal"></strong>?</h4>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                <a class="btn btn-primary" href="proses_data.php?do=delete&id=<?= $id ?>" role="button">Hapus</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Of Modal Delete -->
 <!-- Start Of Modal Update -->
 <div class="modal fade del" id="ubah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel">
@@ -120,14 +118,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3 position-relative form-outline" style="display: none;">
-                        <label>DO
-                            <input type="text" name="do" required value="update">
-                        </label>
-                        <label>ID
-                            <input type="text" id="myId" name="id" required>
-                        </label>
-                    </div>
                     <div class="mb-3 position-relative form-outline">
                         <label for="username">Username</label>
                         <input type="text" id="username" name="username" class="form-control form-control-user"
@@ -166,26 +156,13 @@
     (() => {
         "use strict"; // Start of use strict
         $(document).ready(() => {
-            document.querySelectorAll(".actDelete").forEach((e) => {
-                e.addEventListener('click', () => {
-                    $.post("proses_data.php", {
-                        do: "get",
-                        id: e.value,
-                        key: "username"
-                    }, (data) => {
-                        document.getElementById("usernameModal").innerText = data;
-                    });
-                })
-            })
             document.querySelectorAll(".actUpdate").forEach((e) => {
                 e.addEventListener('click', () => {
-                    $.post("proses_data.php", {
-                        do: "get",
-                        id: e.value,
+                    $.post("proses_data.php?do=get&id=" + e.value, {
                         key: "all"
                     }, (body) => {
                         const data = body.split(",")
-                        document.getElementById("myId").value = data[0]
+                        document.querySelector("form").action = "proses_data.php?do=update&id=" + data[0]
                         document.getElementById("username").value = data[1]
                         document.getElementById("password").value = data[2]
                         document.getElementById("email").value = data[3]
