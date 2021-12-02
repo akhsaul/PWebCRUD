@@ -3,7 +3,7 @@ require_once 'func_helper.php';
 $dbname = "pwebt8";
 $tbname = "account";
 
-function connect($host = "127.0.0.1", $username = "root", $password = null, $db = null, $port = null): mysqli
+function connect($host = "127.0.0.1", $username = "root", $password = null, $db = null, $port = null, $debug = true): mysqli
 {
     $connection = new mysqli($host, $username, $password, $db, $port);
     $msgSuccess = "Connection Success";
@@ -20,6 +20,9 @@ function connect($host = "127.0.0.1", $username = "root", $password = null, $db 
         move("error.php?loc=index.html&title=$msgFailed&msg=$msg");
     }
 
-    echoToConsole($msgSuccess);
+    if ($debug){
+        echoToConsole($msgSuccess);
+    }
+
     return $connection;
 }
