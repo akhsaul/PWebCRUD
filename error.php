@@ -3,7 +3,7 @@ $location = $_GET['loc'];
 $message = $_GET['msg'];
 $title = $_GET['title'];
 ?>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -59,11 +59,9 @@ $title = $_GET['title'];
         document.getElementById('click').click()
     }
     <?php
-    echo "document.getElementById('close').addEventListener('click',
-        () => {
+    echo "document.getElementById('close').addEventListener('click', () => {
             document.location = '$location'; 
-        }
-    )"
+        })"
     ?>
 </script>
 </body>
