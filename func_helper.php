@@ -17,7 +17,12 @@ function echoToConsole($data)
     print_r("<script>console.log('$output');</script>");
 }
 
+function error($newLocation, $tittle, $msg, $msgToConsole = null)
+{
+    header("location:error.php?loc=$newLocation&title=$tittle&msg=$msg&toConsole=$msgToConsole");
+}
+
 function move($location)
 {
-    echo "<script>document.location='$location';</script>";
+    header("location:$location");
 }
