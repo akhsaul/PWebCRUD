@@ -34,15 +34,15 @@ if ($result) {
             move("view_data.php");
         } else {
             $connection->close();
-            move("error.php?loc=index.html&title=Insert Error&msg=Insert Data Failed.<br>Data : $username, $password, $email");
+            move("error.php?loc=index.php&title=Insert Error&msg=Insert Data Failed.<br>Data : $username, $password, $email");
         }
     } else {
         $connection->close();
         echoToConsole("TABLE CAN'T BE CREATED");
-        move("error.php?loc=index.html&title=Table Error&msg=TABLE CAN'T BE CREATED");
+        move("error.php?loc=index.php&title=Table Error&msg=TABLE CAN'T BE CREATED");
     }
 } else {
     $connection->close();
     echoToConsole("DATABASE CAN'T BE CREATED");
-    move("error.php?loc=index.html&title=Database Error&msg=DATABASE CAN'T BE CREATED");
+    move("error.php?loc=index.php&title=Database Error&msg=DATABASE CAN'T BE CREATED");
 }

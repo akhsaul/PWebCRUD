@@ -5,28 +5,9 @@ $message = $_GET['msg'];
 $title = $_GET['title'];
 $msgToConsole = $_GET['toConsole'];
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Error</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-            crossorigin="anonymous"></script>
-    <style>
-        body {
-            text-align: unset !important;
-        }
-
-        .gradient {
-            background: linear-gradient(120deg, #7f70f5, #0ea0ff);
-        }
-    </style>
-</head>
-<body class="gradient">
-<div class="container">
+<?php
+require_once "assets/header.html"
+?>
     <!-- Button trigger modal -->
     <button type="button" id="click" class="btn btn-primary visually-hidden" data-bs-toggle="modal"
             data-bs-target="#staticBackdrop">Launch
@@ -67,5 +48,6 @@ $msgToConsole = $_GET['toConsole'];
 <?php
 echoToConsole($msgToConsole);
 ?>
-</body>
-</html>
+<?php
+require_once "assets/footer.html"
+?>
